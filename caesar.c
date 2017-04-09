@@ -3,44 +3,37 @@
 #include <string.h>
 #include <ctype.h>
 
-void  ceasar(int key, char *argv[]){
-    int l;
+void  caesar(int key, int argc, char *argv[]){
     int i;
-    char    *str;    
-    
-    l = strlen(argv[2]);
-    str = argv[2];
-    i = 0;
-    while (i < l)
+    unsigned int j; 
+
+    i = 2;
+    while (i < argc)
     {
-        if (islower(str[i]) &&  isalpha(str[i]))
-            str[i] = (str[i] - 'a' + key) % 26  + 97;
-        else  if (isupper(str[i]) && isalpha(str[i]))
-            str[i] = (str[i] - 'A' + key) % 26 + 65;
-        //printf  ("%c",  str[i]);
+        j = 0;
+        while (j < strlen(argv[i]))
+        {
+            if (islower(argv[i][j]) &&  isalpha(argv[i][j]))
+                argv[i][j] = (argv[i][j] - 'a' + key) % 26  + 97;
+            else  if (isupper(argv[i][j]) && isalpha(argv[i][j]))
+                argv[i][j] = (argv[i][j] - 'A' + key) % 26 + 65;
+            j++;
+        }
+        if (!(argv[i] == argv[argc])) 
+           printf("%s", " ");
+        printf("%s", argv[i]);
         i++;
     }
-    printf("%s\n", str);
 }
 
 int   main(int argc, char *argv[])
 {
     int key;
-    
 
-  if (argc >= 3 && argv[1][0] == '-')   
-  {               
+    if (argc >= 3 && argv[1][0] == '-')       
+    {               
         key = atoi(&argv[1][1]);
-        ceasar(key, argv);
-        
-        
-
-/*
-        if (!(argv[counter] == argv[argc]))
-            printf("%s", " ");
-        counter++;
-        */
-  }
-  return (0);
-
+        caesar(key, argc, argv);
+    } 
+    return (0);
 }
