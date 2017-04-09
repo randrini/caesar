@@ -19,9 +19,9 @@ void  caesar(int key, int argc, char *argv[]){
                 argv[i][j] = (argv[i][j] - 'A' + key) % 26 + 65;
             j++;
         }
-        if (!(argv[i] == argv[argc])) 
-           printf("%s", " ");
         printf("%s", argv[i]);
+        if (!(i ==  argc - 1))
+            printf("%s", " ");
         i++;
     }
 }
